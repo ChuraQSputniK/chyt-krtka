@@ -209,159 +209,133 @@
         // Spuštění krtka
         function showMole() {
             const holes = document.querySelectorAll('.hole');
-            const activeHoles = document.querySelectorAll('.hole.active// Spuštění krtka
-function showMole() {
-    const holes = document.querySelectorAll('.hole');
-    const activeHoles = document.querySelectorAll('.hole.active');
-    
-    // Nejprve skryj všechny aktivní krtky
-    activeHoles.forEach(hole => {
-        hole.classList.remove('active');
-        hole.classList.remove('bonked');
-    });
-    
-    // Vyber náhodnou díru
-    const randomHole = holes[Math.floor(Math.random() * holes.length)];
-    randomHole.classList.add('active');
-    
-    // Nastav časovač pro skrytí krtka
-    setTimeout(() => {
-        randomHole.classList.remove('active');
-        if (isPlaying) showMole();
-    }, 1000 - Math.min(score * 10, 700)); // Zrychluje se s vyšším skóre
-}
-
-// Kliknutí na krtka
-function bonkMole(e) {
-    if (!isPlaying) return;
-    
-    
-    if (hole.classList.contains('active') && !hole.classList.contains('bonked')) {
-        hole.classList.add('bonked');
-        score++;
-        scoreDisplay.textContent = score;
-    }
-}
-
-// Aktualizace času
-function updateTime() {
-    timeLeft--;
-    timeDisplay.textContent = timeLeft;
-    
-    if (timeLeft <= 0) {
-        endGame();
-    }
-}
-
-// Spuštění hry
-function startGame() {
-    if (isPlaying) return;
-    
-    isPlaying = true;
-    score = 0;
-    timeLeft = 30;
-    scoreDisplay.textContent = score;
-    timeDisplay.textContent = timeLeft;
-    
-    gameOverDisplay.style.display = 'none';
-    startButton.disabled = true;
-    resetButton.disabled = false;
-    
-    showMole();
-    gameInterval = setInterval(updateTime, 1000);
-}
-
-// Konec hry
-function endGame() {
-    isPlaying = false;
-    clearInterval(gameInterval);
-    
-    const holes = document.querySelectorAll('.hole');
-    holes.forEach(hole => {
-        hole.classList.remove('active');
-        hole.classList.remove('bonked');
-    });
-    
-    finalScoreDisplay.textContent = score;
-    gameOverDisplay.style.display = 'block';
-    
-    // Aktualizace nejlepších výsledků
-    updateHighScores();
-    
-    startButton.disabled = false;
-}
-
-// Reset hry
-function resetGame() {
-    endGame();
-    timeLeft = 30;
-    score = 0;
-    scoreDisplay.textContent = score;
-    gameOverDisplay.style.display = 'none';
-    startButton.disabled = true;
-    resetButton.disabled = false;
-    
-    showMole();
-    gameInterval = setInterval(updateTime, 1000);
-}
-
-// Konec hry
-function endGame() {
-    isPlaying = false;
-    clearInterval(gameInterval);
-    
-    const holes = document.querySelectorAll('.hole');
-    holes.forEach(hole => {
-        hole.classList.remove('active');
-        hole.classList.remove('bonked');
-    });
-    
-    finalScoreDisplay.textContent = score;
-    gameOverDisplay.style.display = 'block';
-    
-    // Aktualizace nejlepších výsledků
-    updateHighScores();
-    
-    startButton.disabled = false;
-}
-
-// Reset hry
-function resetGame() {
-    endGame();
-    timeLeft = 30;
-    score = 0;
-    scoreDisplay.textContent = score;
-    gameOverDisplay.style.display = 'none';
-    startButton.disabled = true;
-    resetButton.disabled = false;
-    
-    showMole();
-    gameInterval = setInterval(updateTime, 1000);
-}
-
-// Konec hry
-function endGame() {
-    isPlaying = false;
-    clearInterval(gameInterval);
-    
-    const holes = document.querySelectorAll('.hole');
-    holes.forEach(hole => {
-        hole.classList.remove('active');
-        hole.classList.remove('bonked');
-    });
-    
-    finalScoreDisplay.textContent = score;
-    gameOverDisplay.style.display = 'block';
-    
-    // Aktualizace nejlepších výsledků
-    updateHighScores();
-    
-    startButton.disabled = false;
-}
-
-// Reset hry
-function resetGame() {
-    endGame();
-    timeLeft = 30;
-    score = 0;
-    scoreDisplay.textContent = score;    const hole = this;
+            const activeHoles = document.querySelectorAll('.hole.active');
+            
+            // Nejprve skryj všechny aktivní krtky
+            activeHoles.forEach(hole => {
+                hole.classList.remove('active');
+                hole.classList.remove('bonked');
+            });
+            
+            // Vyber náhodnou díru
+            const randomHole = holes[Math.floor(Math.random() * holes.length)];
+            randomHole.classList.add('active');
+            
+            // Nastav časovač pro skrytí krtka
+            setTimeout(() => {
+                randomHole.classList.remove('active');
+                if (isPlaying) showMole();
+            }, 1000 - Math.min(score * 10, 700)); // Zrychluje se s vyšším skóre
+        }
+        
+        // Kliknutí na krtka
+        function bonkMole(e) {
+            if (!isPlaying) return;
+            
+            const hole = this;
+            
+            if (hole.classList.contains('active') && !hole.classList.contains('bonked')) {
+                hole.classList.add('bonked');
+                score++;
+                scoreDisplay.textContent = score;
+            }
+        }
+        
+        // Aktualizace času
+        function updateTime() {
+            timeLeft--;
+            timeDisplay.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }
+        
+        // Spuštění hry
+        function startGame() {
+            if (isPlaying) return;
+            
+            isPlaying = true;
+            score = 0;
+            timeLeft = 30;
+            scoreDisplay.textContent = score;
+            timeDisplay.textContent = timeLeft;
+            
+            gameOverDisplay.style.display = 'none';
+            startButton.disabled = true;
+            resetButton.disabled = false;
+            
+            showMole();
+            gameInterval = setInterval(updateTime, 1000);
+        }
+        
+        // Konec hry
+        function endGame() {
+            isPlaying = false;
+            clearInterval(gameInterval);
+            
+            const holes = document.querySelectorAll('.hole');
+            holes.forEach(hole => {
+                hole.classList.remove('active');
+                hole.classList.remove('bonked');
+            });
+            
+            finalScoreDisplay.textContent = score;
+            gameOverDisplay.style.display = 'block';
+            
+            // Aktualizace nejlepších výsledků
+            updateHighScores();
+            
+            startButton.disabled = false;
+        }
+        
+        // Reset hry
+        function resetGame() {
+            endGame();
+            timeLeft = 30;
+            score = 0;
+            scoreDisplay.textContent = score;
+            timeDisplay.textContent = timeLeft;
+            gameOverDisplay.style.display = 'none';
+            
+            startGame();
+        }
+        
+        // Aktualizace nejlepších výsledků
+        function updateHighScores() {
+            highScores.push(score);
+            highScores.sort((a, b) => b - a); // Seřazení od nejvyššího
+            highScores = highScores.slice(0, 5); // Ponechání jen 5 nejlepších
+            
+            // Uložení do localStorage
+            localStorage.setItem('moleHighScores', JSON.stringify(highScores));
+            
+            // Zobrazení na stránce
+            displayHighScores();
+        }
+        
+        // Zobrazení nejlepších výsledků
+        function displayHighScores() {
+            highScoresList.innerHTML = '';
+            
+            highScores.forEach(score => {
+                const li = document.createElement('li');
+                li.textContent = score + ' bodů';
+                highScoresList.appendChild(li);
+            });
+        }
+        
+        // Inicializace
+        function init() {
+            createBoard();
+            displayHighScores();
+            
+            startButton.addEventListener('click', startGame);
+            resetButton.addEventListener('click', resetGame);
+        }
+        
+        // Spuštění inicializace po načtení stránky
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
